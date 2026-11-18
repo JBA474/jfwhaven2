@@ -14,9 +14,7 @@ originals. The game data itself is not in this repository.
 
 **Origin of the sources:** Capstone's WHAVEN2 2.0g archive as re-published by Les Bird (https://lesbird.github.io/capstone/index.html; also https://github.com/willtate/whaven2 and RTCM https://rtcm.site/knowledge-base/downloads-rtcm/src-witchaven2-source). Level fixes for LEVEL5/LEVEL13 by FGSFDS (https://rtcm.site/knowledge-base/downloads-rtcm/witchaven-patches/) belong to the game set, not here.
 
-**License:** the Build engine parts are under Ken Silverman's Build license (BUILDLIC.TXT in jfbuild);
-the port scripts are GPL-2.0-or-later. The game sources were released to hobbyists by a former
-Capstone programmer (Les Bird); no commercial game data is included.
+**License:** inherited from the trees this builds on. The source tree is under Ken Silverman's Build license (`buildlic.txt`, free of charge, no commercial use), the same as JonoF's jfbuild, jfwhaven and jftekwar; the MiSTer port additions in `src/` are under the same terms; the port scripts in `build-tools/` are GPL-2.0-or-later (`build-tools/LICENSE`). See `LICENSE`. The game code is Capstone's as released to hobbyists by Les Bird; no game data is included.
 
 **Disclaimer:** I of course used AI. Most of the porting, building and log-level testing was done with
 Claude Code (Anthropic) under my direction; the games were played on the hardware by me.

@@ -1,0 +1,14 @@
+The source code is covered by the terms of Ken Silverman's original Build
+license, which can be found in the file "buildlic.txt" (free of charge, no
+commercial use), the same terms Jonathon Fowler's jfbuild, jfwhaven and
+jftekwar trees are distributed under. The MiSTer port additions in src/
+(mister_port.c, mister_port.h and the MISTER_HYBRID hunks) are covered by the
+same license.
+
+The Witchaven II game code in src/ is Capstone Software's, as released to
+hobbyists by former Capstone programmer Les Bird; it is used here on the same
+basis as JonoF's Capstone ports (https://www.jonof.id.au/capstone/). The game
+data is not included and is not covered by this file.
+
+The port scripts in build-tools/ are free software under the GNU General Public
+License version 2 or (at your option) any later version; see build-tools/LICENSE.
