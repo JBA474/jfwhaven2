@@ -36,6 +36,8 @@ python3 "$S/tier2/wh2/port_wh2b.py" $T || exit 1
 python3 "$S/tier2/patch_rumble.py" $T || exit 1
 python3 "$S/tier2/patch_whrumble.py" $T || exit 1
 python3 "$S/tier2/patch_cheats.py" $T jfwhaven2 || exit 1
+python3 "$S/tier2/patch_nointro.py" $T jfwhaven2 || exit 1
+python3 "$S/tier2/patch_wh2menu.py" $T || exit 1
 sed -i '/src\/whmsc.c/d; /src\/config.c/d' $T/CMakeLists.txt
 grep -q "src/readcfg.c" $T/CMakeLists.txt || sed -i 's|\tsrc/datascan.c|\tsrc/datascan.c\n\tsrc/readcfg.c\n\tsrc/profile.c\n\tsrc/wh2globals.c|' $T/CMakeLists.txt
 sed -i 's/project(jfwhaven C)/project(jfwhaven2 C)/; s/add_executable(jfwhaven$/add_executable(jfwhaven2/; s/add_executable(jfwhaven /add_executable(jfwhaven2 /; s/jfwhaven PRIVATE/jfwhaven2 PRIVATE/g' $T/CMakeLists.txt

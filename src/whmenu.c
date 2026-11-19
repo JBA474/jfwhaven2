@@ -805,6 +805,9 @@ thedifficulty(void)
      goaltime = totalclock + SCOTTSPEED;
 
      while (!exit) {
+          // the clock and the keys (the DOS game's timer interrupt): without
+          // this the page never reaches its timed block and hangs (MiSTer)
+          handleevents();
 
           if (totalclock >= goaltime) {
                goaltime = totalclock + SCOTTSPEED;

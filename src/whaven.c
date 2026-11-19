@@ -1697,7 +1697,8 @@ int app_main(int argc, const char * const argv[]) {
     makepalookup(18, tempbuf, 8, 8, 48, 1);
     gameactivated = 0;
     escapetomenu = 0;
-    if (netgame == 0) {
+    // MISTER_HYBRID_NOINTRO=1 (the set's eduke32_env.sh): no intro video
+    if (netgame == 0 && !(getenv("MISTER_HYBRID_NOINTRO") && atoi(getenv("MISTER_HYBRID_NOINTRO")))) {
         smkplayseq("intro");
     }
     setbrightness(brightness, palette, 0);
