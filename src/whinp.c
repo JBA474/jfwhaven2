@@ -160,7 +160,7 @@ void
 initjstick(void)
 {
      // MiSTer: the core's eight buttons, R B A L Y X Select Start
-     static const int misterjoykeys[NUMJOYKEYS] = {KEYFIRE, KEYJUMP, KEYUSE, KEYRUN, KEYCAST, KEYUSEP, KEYMAP, -1};
+     static const int misterjoykeys[NUMJOYKEYS] = {KEYFIRE, KEYUSE, KEYJUMP, KEYRUN, KEYCAST, KEYUSEP, KEYMAP, -1};
      int i;
      jcalibration = 0;
      jstickenabled = 1;
@@ -176,6 +176,7 @@ keytimerstuff(void)
      if (followmode == 1) {
           goto skip;
      }
+     { extern int misterjoydpadstrafekey; misterjoydpadstrafekey = (unsigned char)keys[KEYSTRAFE]; }   // MiSTer: d-pad left/right strafe (patch_dpadstrafe_game.py)
      if (keystatus[keys[KEYSTRAFE]] == 0 && keystatus[keys[KEYSTRAFE]+0x80] == 0) {
           if (keystatus[keys[KEYLEFT]] > 0 || keystatus[RLEFT] > 0) {
                angvel -= 16;
@@ -2138,7 +2139,7 @@ checkcheat(void)
           }
           nextpage();
           keystatus[0x01]=0;
-          while (keystatus[0x01] == 0);
+          while (keystatus[0x01] == 0) handleevents();   // MiSTer (patch_wh2help.py)
           keystatus[0x01]=0;
      }
      else if (mflag) {

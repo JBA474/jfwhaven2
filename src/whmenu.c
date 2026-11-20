@@ -175,11 +175,12 @@ fancyfont(int x, int y, short tilenum, char *string, char pal)
      int  incr = 0;
      int  exit = 0;
      int  number;
-     char temp[40];
+     char temp[256];
 
-     strlwr(string);
-     len = strlen(string);
-     strcpy(temp, string);
+     strncpy(temp, string, sizeof(temp) - 1);   // MiSTer: a copy, the string may be a literal (read-only)
+     temp[sizeof(temp) - 1] = 0;
+     strlwr(temp);
+     len = strlen(temp);
 
      for (i = 0; i < len; i++) {
           tempbuf[i] = temp[i];
@@ -215,11 +216,12 @@ fancyfontscreen(int x, int y, short tilenum, char *string)
      int  incr = 0;
      int  exit = 0;
      int  number;
-     char temp[40];
+     char temp[256];
 
-     strlwr(string);
-     len = strlen(string);
-     strcpy(temp, string);
+     strncpy(temp, string, sizeof(temp) - 1);   // MiSTer: a copy, the string may be a literal (read-only)
+     temp[sizeof(temp) - 1] = 0;
+     strlwr(temp);
+     len = strlen(temp);
 
      for (i = 0; i < len; i++) {
           tempbuf[i] = temp[i];
@@ -473,10 +475,11 @@ help(void)
      };
 
      int  select = 0;
-     int goaltime;
+     int goaltime = 0;   // MiSTer: was uninitialized (patch_wh2help.py)
      int  exit = 0;
 
      while (!exit) {
+          handleevents();   // MiSTer: the keys and the pad arrive here (patch_wh2help.py)
           if (totalclock >= goaltime) {
 
                if (svga == 0) {

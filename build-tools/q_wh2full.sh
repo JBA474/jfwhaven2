@@ -38,10 +38,18 @@ python3 "$S/tier2/patch_whrumble.py" $T || exit 1
 python3 "$S/tier2/patch_cheats.py" $T jfwhaven2 || exit 1
 python3 "$S/tier2/patch_nointro.py" $T jfwhaven2 || exit 1
 python3 "$S/tier2/patch_wh2menu.py" $T || exit 1
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven/build-tools/misterpad/unpatch_padnames.py" $T src/whaven.c || exit 1
 sed -i '/src\/whmsc.c/d; /src\/config.c/d' $T/CMakeLists.txt
 grep -q "src/readcfg.c" $T/CMakeLists.txt || sed -i 's|\tsrc/datascan.c|\tsrc/datascan.c\n\tsrc/readcfg.c\n\tsrc/profile.c\n\tsrc/wh2globals.c|' $T/CMakeLists.txt
 sed -i 's/project(jfwhaven C)/project(jfwhaven2 C)/; s/add_executable(jfwhaven$/add_executable(jfwhaven2/; s/add_executable(jfwhaven /add_executable(jfwhaven2 /; s/jfwhaven PRIVATE/jfwhaven2 PRIVATE/g' $T/CMakeLists.txt
 grep -n "add_executable\|project(" $T/CMakeLists.txt
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven2/build-tools/patch_wh2dead.py" $T || exit 1
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven2/build-tools/patch_wh2fancy.py" $T || exit 1
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven2/build-tools/patch_wh2help.py" $T || exit 1
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven/build-tools/patch_dpadstrafe.py" $T/jfbuild || exit 1
+python3 "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven/build-tools/patch_dpadstrafe_game.py" $T whaven2 || exit 1
+# the crash reporter (mister_crash.c, 2026-11-19)
+cp "/mnt/c/Users/Jess/Desktop/EDUKE32/Witchaven/build-tools/mister_crash.c" $T/src/; grep -q mister_crash.c $T/CMakeLists.txt || sed -i "s|\tsrc/mister_port.c|\tsrc/mister_port.c\n\tsrc/mister_crash.c|" $T/CMakeLists.txt
 R=~/ionfury/EDuke32_MiSTer; PREFIX=$R/build/sdl/mister/prefix
 BT=Release; CF=""; [ -n "$WH2DEBUG" ] && { BT=Debug; CF="-O0 -fno-omit-frame-pointer -funwind-tables -g"; }
 cmake -S $T -B $T/build -DCMAKE_BUILD_TYPE=$BT "-DCMAKE_C_FLAGS=$CF" -DCMAKE_TOOLCHAIN_FILE=$R/hybrid/toolchain/mister.cmake -DCMAKE_FIND_ROOT_PATH=$PREFIX -DCMAKE_PREFIX_PATH=$PREFIX -DMISTER_HYBRID=ON "-DCMAKE_EXE_LINKER_FLAGS=-no-pie -static-libgcc" > $T/cmake.log 2>&1 || { tail -5 $T/cmake.log; exit 1; }

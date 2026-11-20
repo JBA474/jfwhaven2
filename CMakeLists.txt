@@ -74,6 +74,7 @@ add_executable(jfwhaven2
 	src/wh2globals.c
 	src/version.c
 	src/mister_port.c
+	src/mister_crash.c
 )
 
 target_include_directories(jfwhaven2 PRIVATE

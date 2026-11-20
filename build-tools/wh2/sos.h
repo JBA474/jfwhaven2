@@ -12,11 +12,6 @@
 #define O_BINARY 0
 #endif
 typedef unsigned short WORD;
-typedef unsigned int W32;
-typedef unsigned short W16;
-typedef unsigned char W8;
-typedef char *PSTR8;
-typedef void *LPSTR;
 typedef unsigned char BYTE;
 typedef unsigned int DWORD;
 typedef char *PSTR;

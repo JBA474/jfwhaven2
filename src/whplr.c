@@ -1120,6 +1120,7 @@ playerdead(struct player * plr)
      startredflash(60);
      while (keystatus[keys[KEYFIRE]] == 0 && keystatus[keys[KEYUSE]] == 0
             && keystatus[1] == 0 && keystatus[0x43] == 0) {
+          handleevents();   // MiSTer: the keys and the pad arrive here (patch_wh2dead.py)
           getzrange(plr->x, plr->y, plr->z, plr->sector,
                     &hiz, &hihit, &loz, &lohit, 128L, 0);
           if (plr->horiz < 100 + (YDIM >> 1)) {
@@ -1149,6 +1150,7 @@ playerdead(struct player * plr)
      goaltime = totalclock + 240;
 
      while (!exit) {
+          handleevents();   // MiSTer (patch_wh2dead.py)
           if (totalclock > goaltime)
                exit = 1;
           if (keystatus[0x39] > 0)
